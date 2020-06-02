@@ -22,6 +22,7 @@ class AppGL{
     public var penNodule = new PenNodule();
     public var width:  Int;
     public var height: Int;
+    public var buf: BufferGL;
     public
     function new( width_: Int, height_: Int ){
         width = width_;
@@ -39,10 +40,10 @@ class AppGL{
     function setup(){
         program = programSetup( gl, vertexString0, fragmentString0 );
         draw( penNodule.pen );
-        interleaveXYZ_RGBA( gl
-                          , program
-                          , penNodule.data
-                          , 'vertexPosition', 'vertexColor', true );
+        buf = interleaveXYZ_RGBA( gl
+                                , program
+                                , penNodule.data
+                                , 'vertexPosition', 'vertexColor', true );
         setAnimate();
     }
     // override this for drawing initial scene
